@@ -216,6 +216,10 @@ font.families.google = function()
 #'               will be used in R plotting functions. See the example code below.
 #' @param regular.wt font weight for the regular font face, usually 400
 #' @param bold.wt font weight for the bold font face, usually 700
+#' @param symbol optional path to a separate font file to use as "symbol" font face
+#'               (emojis). This argument must be specified as a character string. If
+#'               `NULL`, `regular.wt` is also used for symbols (which usually results
+#'               in emojis being rendered as the `□` placeholder).
 #' @param repo the site that hosts the font files. Default is the official
 #'             repository \code{http://fonts.gstatic.com/} provided by
 #'             Google Fonts.
@@ -261,7 +265,8 @@ font.families.google = function()
 #' 
 #' }
 font_add_google = function(name, family = name, regular.wt = 400,
-                           bold.wt = 700, repo = "http://fonts.gstatic.com/",
+                           bold.wt = 700, symbol = NULL,
+                           repo = "http://fonts.gstatic.com/",
                            db_cache = TRUE, handle = curl::new_handle())
 {   
     name   = as.character(name)[1]
@@ -303,7 +308,7 @@ font_add_google = function(name, family = name, regular.wt = 400,
     bi.url = font$files[[bolditalic]]
     bi.file = if(is.null(bi.url)) NULL else download_font_file(bi.url, repo, handle = handle)
 
-    font_add(family, r.file, b.file, i.file, bi.file)
+    font_add(family, r.file, b.file, i.file, bi.file, symbol)
 }
 
 #' @rdname font_add_google

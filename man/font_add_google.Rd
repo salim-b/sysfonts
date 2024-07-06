@@ -10,6 +10,7 @@ font_add_google(
   family = name,
   regular.wt = 400,
   bold.wt = 700,
+  symbol = NULL,
   repo = "http://fonts.gstatic.com/",
   db_cache = TRUE,
   handle = curl::new_handle()
@@ -34,6 +35,11 @@ will be used in R plotting functions. See the example code below.}
 \item{regular.wt}{font weight for the regular font face, usually 400}
 
 \item{bold.wt}{font weight for the bold font face, usually 700}
+
+\item{symbol}{optional path to a separate font file to use as "symbol" font face
+(emojis). This argument must be specified as a character string. If
+`NULL`, `regular.wt` is also used for symbols (which usually results
+in emojis being rendered as the `□` placeholder).}
 
 \item{repo}{the site that hosts the font files. Default is the official
 repository \code{http://fonts.gstatic.com/} provided by
